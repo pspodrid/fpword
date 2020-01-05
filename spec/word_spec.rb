@@ -70,5 +70,17 @@ describe('#==') do
         expect(Word.all).to(eq([word2]))
       end
     end
+
+    describe('#definitions') do
+      it("returns a word's definition") do
+        word = Word.new("hello", nil)
+        word.save()
+        definition = Definition.new("greeting", word.id, nil)
+        definition.save()
+        definition2 = Definition.new("salutations", word.id, nil)
+        definition2.save()
+        expect(word.definitions).to(eq([definition, definition2]))
+      end
+    end
   end
 end
