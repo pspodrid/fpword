@@ -1,19 +1,23 @@
 require('sinatra')
 require('sinatra/reloader')
+require('./lib/word')
+require('pry')
 also_reload('lib/**/*.rb')
 
 require('sinatra')
 
 get('/') do
-  "This will be our home page. '/' is always the root route in a Sinatra application."
+  @words = Word.all
+  erb(:words)
 end
 
 get('/word') do
-  "This route will show a list of all albums."
+  @words = Word.all
+  erb(:words)
 end
 
 get('/word/new') do
-  "This will take us to a page with a form for adding a new album."
+  erb(:new_word)
 end
 
 get('/word/:id') do
@@ -21,7 +25,11 @@ get('/word/:id') do
 end
 
 post('/word') do
-  "This route will add an album to our list of albums. We can't access this by typing in the URL. In a future lesson, we will use a form that specifies a POST action to reach this route."
+  name = params[:word_name]
+  word = Word.new(name, nil)
+  word.save()
+  @albums = Album.all()
+  erb(:words)
 end
 
 get('/word/:id/edit') do
