@@ -30,46 +30,45 @@ describe('#==') do
     word2 = Word.new("hello", nil)
     expect(word).to(eq(word2))
   end
-end
 
-describe('.clear') do
-  it("clears all words") do
-    word = Word.new("hello", nil)
-    word.save()
-    word2 = Word.new("bye", nil)
-    word2.save()
-    Word.clear()
-    expect(Word.all).to(eq([]))
-  end
-
-  describe('.find') do
-    it("finds a word by id") do
+  describe('.clear') do
+    it("clears all words") do
       word = Word.new("hello", nil)
       word.save()
       word2 = Word.new("bye", nil)
       word2.save()
-      expect(Word.find(word.id)).to(eq(word))
-    end
-  end
-
-  describe('#update') do
-    it("updates a word by id") do
-      word = Word.new("hello", nil)
-      word.save()
-      word.update("hey")
-      expect(word.word).to(eq("hey"))
-    end
-  end
-
-  describe('#delete') do
-    it("deletes a word by id") do
       Word.clear()
-      word = Word.new("hello", nil)
-      word.save()
-      word2 = Word.new("bye", nil)
-      word2.save()
-      word.delete()
-      expect(Word.all).to(eq([word2]))
+      expect(Word.all).to(eq([]))
+    end
+
+    describe('.find') do
+      it("finds a word by id") do
+        word = Word.new("hello", nil)
+        word.save()
+        word2 = Word.new("bye", nil)
+        word2.save()
+        expect(Word.find(word.id)).to(eq(word))
+      end
+    end
+
+    describe('#update') do
+      it("updates a word by id") do
+        word = Word.new("hello", nil)
+        word.save()
+        word.update("hey")
+        expect(word.word).to(eq("hey"))
+      end
+    end
+
+    describe('#delete') do
+      it("deletes a word by id") do
+        word = Word.new("hello", nil)
+        word.save()
+        word2 = Word.new("bye", nil)
+        word2.save()
+        word.delete()
+        expect(Word.all).to(eq([word2]))
+      end
     end
   end
 end
