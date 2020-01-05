@@ -9,7 +9,7 @@ describe '#Definition' do
     Word.clear()
     Definition.clear()
     @word = Word.new("hello", nil)
-    word.save()
+    @word.save()
   end
 
   describe('#==') do
@@ -36,7 +36,7 @@ describe '#Definition' do
       definition2 = Definition.new("salutations", @word.id, nil)
       definition2.save()
       Definition.clear()
-      expect(Definition.all.).to(eq([]))
+      expect(Definition.all).to(eq([]))
     end
   end
 
